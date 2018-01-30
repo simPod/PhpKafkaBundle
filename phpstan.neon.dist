@@ -1,0 +1,13 @@
+parameters:
+    level: max
+    paths:
+        - %currentWorkingDirectory%/src
+        - %currentWorkingDirectory%/tests
+    ignoreErrors:
+        - "~Method RdKafka\\\\TopicConf::set\\(\\) invoked with 2 parameters, 0 required~"
+
+includes:
+    - tests/Utils/PHPStan/Extension/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
