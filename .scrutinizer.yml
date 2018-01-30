@@ -1,0 +1,25 @@
+build:
+    environment:
+        elasticsearch: false
+        memcached: false
+        mongodb: false
+        mysql: false
+        neo4j: false
+        postgresql: false
+        rabbitmq: false
+        redis: false
+
+    dependencies:
+        before:
+            - chmod +x ./install_rdkafka.sh
+            -
+                command: ./install_rdkafka.sh
+                environment:
+                    LIBRDKAFKA_VERSION: v0.11.3
+
+tools:
+    external_code_coverage: true
+
+checks:
+    php:
+        code_rating: true
