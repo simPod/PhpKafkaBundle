@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SimPod\KafkaBundle\Kafka\Brokers:
+      arguments:
+        $config: '%kafka%'
+
+    SimPod\KafkaBundle\Console\ConsumeCommand:
+    SimPod\KafkaBundle\Console\ConsumerListCommand:
