@@ -17,14 +17,14 @@ class ConsumerConfig
     public function __construct(string $groupId)
     {
         $config = new Conf();
-        $config->set(ConfigConstants::GROUP_ID, $groupId);
         $config->setDefaultTopicConf(new TopicConf());
         $this->config = $config;
+        $this->set(ConfigConstants::GROUP_ID, $groupId);
     }
 
-    public function disableAutoCommit() : void
+    public function set(string $name, string $value) : void
     {
-        $this->config->set(ConfigConstants::ENABLE_AUTO_COMMIT, 'false');
+        $this->config->set($name, $value);
     }
 
     public function commitIfAutoCommitDisabled(Message $message, KafkaConsumer $kafkaConsumer) : void
