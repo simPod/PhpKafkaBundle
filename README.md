@@ -4,6 +4,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/simPod/KafkaBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/simPod/KafkaBundle)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/simPod/KafkaBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/simPod/KafkaBundle)
 [![GitHub Issues](https://img.shields.io/github/issues/simPod/KafkaBundle.svg?style=flat-square)](https://github.com/simPod/KafkaBundle/issues)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FsimPod%2FKafkaBundle.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FsimPod%2FKafkaBundle?ref=badge_shield)
 
 ## Installation
 
@@ -138,3 +139,7 @@ final class SimpleConsumer implements Consumer
 ### Development
 
 There is `kwn/php-rdkafka-stubs` listed as a dev dependency so it properly integrates php-rdkafka extension with IDE.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FsimPod%2FKafkaBundle.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FsimPod%2FKafkaBundle?ref=badge_large)
