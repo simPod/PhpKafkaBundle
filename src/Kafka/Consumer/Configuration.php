@@ -14,6 +14,9 @@ class Configuration
     /** @var Conf */
     private $config;
 
+    /** @var int */
+    private $consumerIdleThresholdMs = 120000;
+
     public function __construct(string $groupId)
     {
         $config = new Conf();
@@ -43,5 +46,15 @@ class Configuration
     public function get() : Conf
     {
         return $this->config;
+    }
+
+    public function setConsumerIdleThresholdMs(int $consumerIdleThresholdMs) : void
+    {
+        $this->consumerIdleThresholdMs = $consumerIdleThresholdMs;
+    }
+
+    public function getConsumerIdleThresholdMs() : int
+    {
+        return $this->consumerIdleThresholdMs;
     }
 }

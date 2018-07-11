@@ -19,4 +19,6 @@ interface Consumer
      * @return string[]
      */
     public function getTopics() : array;
+
+    public function idle() : void;
 }

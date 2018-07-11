@@ -9,6 +9,7 @@ use SimPod\KafkaBundle\DependencyInjection\ConsumerBag;
 use SimPod\KafkaBundle\DependencyInjection\KafkaExtension;
 use SimPod\KafkaBundle\Kafka\Brokers;
 use SimPod\KafkaBundle\Kafka\Consumer\ConfigConstants;
+use SimPod\KafkaBundle\Kafka\Consumer\Configuration;
 use SimPod\KafkaBundle\Kafka\Consumer\Consumer;
 use SimPod\KafkaBundle\Kafka\Consumer\IncompatibleConsumerStatus;
 use Symfony\Component\Console\Command\Command;
@@ -63,19 +64,26 @@ final class ConsumeCommand extends Command
 
         $consumer = $consumers[$consumerName];
 
-        $config = $consumer->getConfiguration()->get();
+        $configuration = $consumer->getConfiguration();
+
+        $config = $configuration->get();
         $config->set(ConfigConstants::METADATA_BROKER_LIST, $this->brokers->getList());
 
         $kafkaConsumer = new KafkaConsumer($config);
         $kafkaConsumer->subscribe($consumer->getTopics());
 
-        $this->startConsuming($kafkaConsumer, $consumer);
+        $this->startConsuming($configuration, $kafkaConsumer, $consumer);
     }
 
-    private function startConsuming(KafkaConsumer $kafkaConsumer, Consumer $consumer) : void
-    {
+    private function startConsuming(
+        Configuration $configuration,
+        KafkaConsumer $kafkaConsumer,
+        Consumer $consumer
+    ) : void {
+        $consumerIdleThresholdMs = $configuration->getConsumerIdleThresholdMs();
+
         while (true) {
-            $message = $kafkaConsumer->consume(120 * 1000);
+            $message = $kafkaConsumer->consume($consumerIdleThresholdMs);
             switch ($message->err) {
                 case RD_KAFKA_RESP_ERR_NO_ERROR:
                     $consumer->consume($message, $kafkaConsumer);
@@ -83,6 +91,7 @@ final class ConsumeCommand extends Command
                 case RD_KAFKA_RESP_ERR__PARTITION_EOF:
                     break;
                 case RD_KAFKA_RESP_ERR__TIMED_OUT:
+                    $consumer->idle();
                     break;
                 default:
                     throw IncompatibleConsumerStatus::fromMessage($message);
