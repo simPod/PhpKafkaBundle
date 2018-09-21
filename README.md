@@ -103,20 +103,25 @@ This is example of simple consumer that belongs into `simple_consumer_group` and
 
 declare(strict_types=1);
 
-use RdKafka\KafkaConsumer;
 use RdKafka\Message;
 use SimPod\KafkaBundle\Kafka\Consumer\Consumer;
-use SimPod\KafkaBundle\Kafka\Consumer\Config;
+use SimPod\KafkaBundle\Kafka\Consumer\Configuration;
 
-final class SimpleConsumer implements Consumer
+final class SimpleConsumer extends Consumer
 {
     private const GROUP_ID = 'simple_consumer_group';
 
-    public function consume(Message $kafkaMessage, KafkaConsumer $kafkaConsumer) : void
+    /**
+     * @param Message $kafkaMessage
+     */
+    public function consume(Message $kafkaMessage) : void
     {
-        // Execute your consumer logic here
+
     }
 
+    /**
+     * @return string
+     */
     public function getGroupId() : string
     {
         return self::GROUP_ID;
@@ -130,14 +135,17 @@ final class SimpleConsumer implements Consumer
         return ['topic1'];
     }
 
-    public function getConfig() : Config
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration() : Configuration
     {
-        return new Config($this->getGroupId());
+        return new Configuration($this->getGroupId());
     }
 }
 ```
 
- It is automatically registered to container for it `implements Consumer` 
+Consumer will be register automatically to use.
 
 ### Development
 
