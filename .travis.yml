@@ -3,79 +3,79 @@ language: php
 sudo: required
 
 php:
-- 7.1
-- 7.2
-- nightly
+    - 7.2
+    - 7.3
+    - nightly
 
 env:
     global:
-    - LIBRDKAFKA_VERSION=v0.11.3
+        - LIBRDKAFKA_VERSION=v0.11.3
 
 before_install:
-- docker-compose --file tests/docker-compose.yml up -d
-- mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
-- chmod +x .ci/install_rdkafka.sh
-- .ci/install_rdkafka.sh
+    - docker-compose --file tests/docker-compose.yml up -d
+    - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
+    - chmod +x .ci/install_rdkafka.sh
+    - .ci/install_rdkafka.sh
 
 install:
-- travis_retry composer update --prefer-dist
+    - travis_retry composer update --prefer-dist
 
 script:
-- ./vendor/bin/phpunit
+    - ./vendor/bin/phpunit
 
 jobs:
     allow_failures:
-    -   php: nightly
-    -   env: DEV_DEPENDENCIES
+        -   php: nightly
+        -   env: DEV_DEPENDENCIES
 
     include:
-    -   stage: Test
-        env: LOWEST_DEPENDENCIES
-        install:
-        - travis_retry composer update -n --prefer-dist --prefer-lowest
+        -   stage: Test
+            env: LOWEST_DEPENDENCIES
+            install:
+                - travis_retry composer update -n --prefer-dist --prefer-lowest
 
-    -   stage: Test
-        env: LOWEST_DEPENDENCIES
-        php: 7.2
-        install:
-        - travis_retry composer update -n --prefer-dist --prefer-lowest
+        -   stage: Test
+            env: LOWEST_DEPENDENCIES
+            php: 7.3
+            install:
+                - travis_retry composer update -n --prefer-dist --prefer-lowest
 
-    -   stage: Test
-        env: LOWEST_DEPENDENCIES
-        php: nightly
-        install:
-        - travis_retry composer update -n --prefer-dist --prefer-lowest
+        -   stage: Test
+            env: LOWEST_DEPENDENCIES
+            php: nightly
+            install:
+                - travis_retry composer update -n --prefer-dist --prefer-lowest
 
-    -   stage: Test
-        env: DEV_DEPENDENCIES
-        php: nightly
-        install:
-        - composer config minimum-stability dev
-        - travis_retry composer update -n --prefer-dist
+        -   stage: Test
+            env: DEV_DEPENDENCIES
+            php: nightly
+            install:
+                - composer config minimum-stability dev
+                - travis_retry composer update -n --prefer-dist
 
-    -   stage: Test
-        env: COVERAGE
-        php: 7.1
-        before_script:
-        - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
-        - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
-        script:
-        - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
-        after_script:
-        - wget https://github.com/scrutinizer-ci/ocular/releases/download/1.5.2/ocular.phar
-        - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+        -   stage: Test
+            env: COVERAGE
+            php: 7.2
+            before_script:
+                - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
+                - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
+            script:
+                - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+            after_script:
+                - wget https://github.com/scrutinizer-ci/ocular/releases/download/1.5.2/ocular.phar
+                - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
-    -   stage: Code Quality
-        env: CODING_STANDARD
-        script:
-        - ./vendor/bin/phpcs
+        -   stage: Code Quality
+            env: CODING_STANDARD
+            script:
+                - ./vendor/bin/phpcs
 
-    -   stage: Code Quality
-        env: STATIC_ANALYSIS
-        script:
-            - ./vendor/bin/phpstan analyse
+        -   stage: Code Quality
+            env: STATIC_ANALYSIS
+            script:
+                - ./vendor/bin/phpstan analyse
 
 cache:
     directories:
-    - $HOME/.composer/cache
+        - $HOME/.composer/cache
 
