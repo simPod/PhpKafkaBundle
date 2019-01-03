@@ -14,10 +14,10 @@ final class Configuration implements ConfigurationInterface
 
     public function getConfigTreeBuilder() : TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder(KafkaExtension::ALIAS);
 
         /** @var ArrayNodeDefinition $rootNode */
-        $rootNode = $treeBuilder->root(KafkaExtension::ALIAS);
+        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root(KafkaExtension::ALIAS);
 
         $this->configureConnection($rootNode);
 
