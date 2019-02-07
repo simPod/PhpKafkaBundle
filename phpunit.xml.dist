@@ -6,8 +6,10 @@
          beStrictAboutChangesToGlobalState="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
-         colors="true"
          bootstrap="tests/bootstrap.php"
+         colors="true"
+         executionOrder="random"
+         resolveDependencies="true"
 >
     <testsuites>
         <testsuite name="Test Suite">
