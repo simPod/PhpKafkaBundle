@@ -16,7 +16,6 @@
         "php": "^7.2",
         "ext-pcntl": "*",
         "ext-rdkafka": "*",
-        "phpunit/phpunit": "^8.0",
         "psr/log": "^1.0",
         "symfony/config": "^3.4|^4.1",
         "symfony/console": "^3.4|^4.1",
@@ -30,6 +29,7 @@
         "phpstan/phpstan": "^0.10.3",
         "phpstan/phpstan-phpunit": "^0.10.0",
         "phpstan/phpstan-strict-rules": "^0.10.1",
+        "phpunit/phpunit": "^8.0",
         "symfony/yaml": "^3.4|^4.1"
     },
     "suggest": {
