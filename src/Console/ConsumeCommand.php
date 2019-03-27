@@ -52,7 +52,7 @@ final class ConsumeCommand extends Command
         );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output) : ?int
     {
         $this->registerSignals();
 
@@ -69,6 +69,8 @@ final class ConsumeCommand extends Command
         $consumer = $consumers[$consumerName];
 
         $this->consumerRunner->run($consumer);
+
+        return 0;
     }
 
     private function registerSignals() : void
