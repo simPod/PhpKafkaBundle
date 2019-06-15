@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class Dispatcher
 {
@@ -17,12 +17,12 @@ class Dispatcher
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function dispatch(string $eventName, ?Event $event = null) : void
+    public function dispatch(Event $event) : void
     {
         if ($this->eventDispatcher === null) {
             return;
         }
 
-        $this->eventDispatcher->dispatch($eventName, $event);
+        $this->eventDispatcher->dispatch($event);
     }
 }

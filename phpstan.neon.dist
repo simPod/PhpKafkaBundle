@@ -3,8 +3,6 @@ parameters:
     paths:
         - %currentWorkingDirectory%/src
         - %currentWorkingDirectory%/tests
-    ignoreErrors:
-        - "~Method RdKafka\\\\TopicConf::set\\(\\) invoked with 2 parameters, 0 required~"
 
 includes:
     - tests/Utils/PHPStan/Extension/extension.neon

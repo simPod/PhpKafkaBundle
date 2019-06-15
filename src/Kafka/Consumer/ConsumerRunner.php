@@ -92,7 +92,7 @@ final class ConsumerRunner
 
         $this->startConsuming($kafkaConsumer, $consumer);
 
-        $this->eventDispatcher->dispatch(StoppedConsuming::NAME);
+        $this->eventDispatcher->dispatch(new StoppedConsuming());
     }
 
     public function scheduleStop() : void
@@ -122,11 +122,11 @@ final class ConsumerRunner
                     break;
                 case RD_KAFKA_RESP_ERR__PARTITION_EOF:
                     $this->logger->info('No more messages. Will wait for more');
-                    $this->eventDispatcher->dispatch(ReachedEndOfPartition::NAME);
+                    $this->eventDispatcher->dispatch(new ReachedEndOfPartition());
                     break;
                 case RD_KAFKA_RESP_ERR__TIMED_OUT:
                     $this->logger->info('Timed out');
-                    $this->eventDispatcher->dispatch(TimedOut::NAME);
+                    $this->eventDispatcher->dispatch(new TimedOut());
                     break;
                 default:
                     throw IncompatibleStatus::fromMessage($message);

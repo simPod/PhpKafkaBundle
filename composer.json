@@ -17,11 +17,12 @@
         "ext-pcntl": "*",
         "ext-rdkafka": "*",
         "psr/log": "^1.0",
-        "symfony/config": "^3.4|^4.1",
-        "symfony/console": "^3.4|^4.1",
-        "symfony/dependency-injection": "^3.4|^4.1",
-        "symfony/event-dispatcher": "^4.1",
-        "symfony/framework-bundle": "^3.4|^4.1"
+        "symfony/config": "^4.3",
+        "symfony/console": "^4.3",
+        "symfony/contracts": "^1.1",
+        "symfony/dependency-injection": "^4.3",
+        "symfony/event-dispatcher": "^4.3",
+        "symfony/framework-bundle": "^4.3"
     },
     "require-dev": {
         "doctrine/coding-standard": "^6.0",
@@ -30,7 +31,7 @@
         "phpstan/phpstan-phpunit": "^0.11.0",
         "phpstan/phpstan-strict-rules": "^0.11.0",
         "phpunit/phpunit": "^8.0",
-        "symfony/yaml": "^3.4|^4.1"
+        "symfony/yaml": "^4.3"
     },
     "suggest": {
         "kwn/php-rdkafka-stubs": "Support and autocompletion for RDKafka in IDE | require as dev dependency"
