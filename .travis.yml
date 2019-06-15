@@ -5,6 +5,7 @@ sudo: required
 php:
     - 7.2
     - 7.3
+    - 7.4snapshot
     - nightly
 
 env:
@@ -66,12 +67,12 @@ jobs:
                 - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
         -   stage: Code Quality
-            env: CODING_STANDARD
+            name: Code Style
             script:
                 - ./vendor/bin/phpcs
 
         -   stage: Code Quality
-            env: STATIC_ANALYSIS
+            name: Static Analysis
             script:
                 - ./vendor/bin/phpstan analyse
 
