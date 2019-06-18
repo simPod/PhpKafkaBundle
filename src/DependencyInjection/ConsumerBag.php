@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\DependencyInjection;
 
-use SimPod\KafkaBundle\Kafka\Consumer\Consumer;
+use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
-class ConsumerBag
+final class ConsumerBag
 {
-    /** @var Consumer[] */
+    /** @var NamedConsumer[] */
     private $consumers = [];
 
-    /** @return Consumer[] $consumers */
+    /** @return NamedConsumer[] $consumers */
     public function getConsumers() : array
     {
         return $this->consumers;
     }
 
-    public function addConsumer(Consumer $consumer) : void
+    public function addConsumer(NamedConsumer $consumer) : void
     {
-        $this->consumers[$consumer->getGroupId()] = $consumer;
+        $this->consumers[$consumer->getName()] = $consumer;
     }
 }

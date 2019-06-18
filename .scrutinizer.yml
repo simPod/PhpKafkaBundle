@@ -20,7 +20,7 @@ build:
             -
                 command: .ci/install_rdkafka.sh
                 environment:
-                    LIBRDKAFKA_VERSION: v0.11.3
+                    LIBRDKAFKA_VERSION: v1.0.1
 
         override:
             - composer install --no-interaction --prefer-dist
@@ -37,4 +37,3 @@ build_failure_conditions:
     - 'elements.rating(<= C).new.exists'                        # No new classes/methods with a rating of C or worse allowed
     - 'issues.severity(>= MAJOR).new.exists'                    # New issues of major or higher severity
     - 'project.metric_change("scrutinizer.test_coverage", < 0)' # Code Coverage decreased from previous inspection
-    - 'patches.label("Unused Use Statements").new.exists'       # No new unused imports patches allowed

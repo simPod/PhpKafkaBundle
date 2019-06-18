@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SimPod\KafkaBundle\DependencyInjection\KafkaExtension;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Yaml\Yaml;
-use function assert;
-use function file_get_contents;
-use function is_string;
+use function Safe\file_get_contents;
 use function sys_get_temp_dir;
 
-abstract class KafkaTestCase extends \PHPUnit\Framework\TestCase
+abstract class KafkaTestCase extends TestCase
 {
     protected function createYamlBundleTestContainer() : Container
     {
@@ -30,7 +29,6 @@ abstract class KafkaTestCase extends \PHPUnit\Framework\TestCase
         $container->registerExtension($extension);
 
         $fileContents = file_get_contents(__DIR__ . '/test-config.yaml');
-        assert(is_string($fileContents));
 
         $config = Yaml::parse($fileContents);
 

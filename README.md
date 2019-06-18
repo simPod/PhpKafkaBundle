@@ -12,7 +12,7 @@
 Add as [Composer](https://getcomposer.org/) dependency:
 
 ```sh
-$ composer require simpod/kafka-bundle
+composer require simpod/kafka-bundle
 ```
 
 Then add `KafkaBundle` to Symfony's `bundles.php`:
@@ -31,115 +31,106 @@ return [
 
 This package simply makes it easier to integrate https://github.com/arnaud-lb/php-rdkafka with Symfony. For more details how to work with Kafka in PHP, refer to its documentation.
 
-This bundle registers these commands:
+### Available console commands:
 
 - `bin/console debug:kafka:consumers` to list all available consumer groups
-- `bin/console kafka:consumer:run <consumer group name>` to run consumer instance to join specific consumer group
+- `bin/console kafka:consumer:run <consumer name>` to run consumer instance
 
-### Setup
+### Config:
 
-Create eg. `kafka.yaml` file in your config directory with following content:
+You can create eg. `kafka.yaml` file in your config directory with following content:
 
 ```yaml
 kafka:
-    broker_list: '%env(KAFKA_BROKER_LIST)%' # required
+    bootstrap_servers: '%env(KAFKA_BOOTSTRAP_SERVERS)%'
     client:
         id: 'your-application-name'
 ```
-It reads env var `KAFKA_BROKER_LIST` that contains comma-separated list of brokers (`broker-1.kafka.com:9092,broker-2.kafka.com:9092`).
+
+- `bootstrap_servers` reads env var `KAFKA_BOOTSTRAP_SERVERS` that contains comma-separated list of bootstrap servers (`broker-1.kafka:9092,broker-2.kafka:9092`).
 
 If not set, it defaults to `127.0.0.1:9092`
 
-### Producing
+### Services
 
-To create producer, you will need only `Brokers` from this bundle, there's no need for anything else.
+Following services are registered in container and can be DI injected.
 
-Simple example:
+#### Brokers
+class: `\SimPod\KafkaBundle\Kafka\Brokers`
+
+Brokers service gives you `bootstrap_servers` config value through `->getBootstrapServers()`
+
+#### Clients
+class: `\SimPod\KafkaBundle\Kafka\Clients`
+
+Clients can help you generate `client.id`
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-use RdKafka\Producer;
-use SimPod\KafkaBundle\Kafka\Brokers;
-use const RD_KAFKA_PARTITION_UA;
-use function json_encode;
-
-class SimpleProducer
-{
-    private const TOPIC_NAME = 'topic1';
-
-    /** @var Brokers */
-    private $brokers;
-
-    public function __construct(Brokers $brokers)
-    {
-        $this->brokers = $brokers;
-    }
-
-    public function produce(MessageObject $message) : void
-    {
-        $producer = new Producer();
-        $producer->addBrokers($this->brokers->getList());
-
-        $topic = $producer->newTopic(self::TOPIC_NAME);
-
-        // 4th argument can be optional partitioning key
-        $topic->produce(
-            RD_KAFKA_PARTITION_UA,
-            0,
-            json_encode($message)
-        );
-    }
-}
+$config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->client->getIdWithHostname());
 ```
 
 ### Consuming
 
-This is example of simple consumer that belongs into `simple_consumer_group` and consuming `topic1`
+There's interface `NamedConsumer` available. When your consumer implements it, this bundle autoregisters it.
+
+This is example of simple consumer, it can be then run via `bin/console kafka:consumer:run consumer1`
 ```php
 <?php
 
 declare(strict_types=1);
 
-use RdKafka\Message;
-use SimPod\KafkaBundle\Kafka\Consumer\Consumer;
-use SimPod\KafkaBundle\Kafka\Consumer\Configuration;
+namespace Your\AppNamespace;
 
-final class SimpleConsumer extends Consumer
+use SimPod\Kafka\Clients\Consumer\ConsumerConfig;
+use SimPod\Kafka\Clients\Consumer\KafkaBatchConsumer;
+use SimPod\KafkaBundle\Kafka\Brokers;
+use SimPod\KafkaBundle\Kafka\Client;
+use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
+
+final class ExampleKafkaConsumer implements NamedConsumer
 {
-    private const GROUP_ID = 'simple_consumer_group';
+    /** @var Brokers */
+    private $brokers;
 
-    public function consume(Message $kafkaMessage) : void
+    /** @var Client */
+    private $client;
+
+    public function __construct(Client $client, Brokers $brokers)
     {
-        // Execute your consumer logic here
-
-        // Example manual commit
-        $this->kafkaConsumer->commit($kafkaMessage);
+        $this->brokers = $brokers;
+        $this->client  = $client;
     }
 
-    public function getGroupId() : string
+    public function run() : void
     {
-        return self::GROUP_ID;
+        $kafkaConsumer = new KafkaBatchConsumer($this->getConfig());
+
+        $kafkaConsumer->subscribe(['topic1']);
+
+        while (true) {
+            ...
+        }
+    }
+    
+    public function getName() : string {
+        return 'consumer1';    
     }
 
-    /**
-     * @return string[]
-     */
-    public function getTopics() : array
+    private function getConfig() : ConsumerConfig
     {
-        return ['topic1'];
-    }
+        $config = new ConsumerConfig();
 
-    public function getConfiguration() : Configuration
-    {
-        return new Configuration($this->getGroupId());
+        $config->set(ConsumerConfig::BOOTSTRAP_SERVERS_CONFIG, $this->brokers->getList());
+        $config->set(ConsumerConfig::ENABLE_AUTO_COMMIT_CONFIG, false);
+        $config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->client->getIdWithHostname());
+        $config->set(ConsumerConfig::AUTO_OFFSET_RESET_CONFIG, 'earliest');
+        $config->set(ConsumerConfig::GROUP_ID_CONFIG, 'consumer_group');
+
+        return $config;
     }
 }
-```
 
- It is automatically registered to container for it `extends Consumer` 
+```
 
 ### Development
 

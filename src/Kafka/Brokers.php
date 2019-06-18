@@ -7,18 +7,18 @@ namespace SimPod\KafkaBundle\Kafka;
 class Brokers
 {
     /** @var string */
-    private $brokerList;
+    private $bootstrapServers;
 
     /**
      * @param mixed[] $config
      */
     public function __construct(array $config)
     {
-        $this->brokerList = $config['broker_list'];
+        $this->bootstrapServers = $config['bootstrap_servers'];
     }
 
-    public function getList() : string
+    public function getBootstrapServers() : string
     {
-        return $this->brokerList;
+        return $this->bootstrapServers;
     }
 }

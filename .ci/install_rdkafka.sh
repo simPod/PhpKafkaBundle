@@ -2,7 +2,7 @@
 
 echo ${LIBRDKAFKA_VERSION}
 
-git clone --depth 1 --branch "v0.11.3" https://github.com/edenhill/librdkafka.git
+git clone --depth 1 --branch "v1.0.1" https://github.com/edenhill/librdkafka.git
 (
     cd librdkafka
     ./configure

@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
-    private const DEFAULT_BROKER = '127.0.0.1:9092';
+    private const DEFAULT_BOOTSTRAP_SERVER_LIST = '127.0.0.1:9092';
 
     public function getConfigTreeBuilder() : TreeBuilder
     {
@@ -27,8 +27,8 @@ final class Configuration implements ConfigurationInterface
     private function configureConnection(ArrayNodeDefinition $rootNode) : void
     {
         $rootNode->children()
-            ->scalarNode('broker_list')
-            ->defaultValue(self::DEFAULT_BROKER);
+            ->scalarNode('bootstrap_servers')
+            ->defaultValue(self::DEFAULT_BOOTSTRAP_SERVER_LIST);
 
         $clientNode = new ArrayNodeDefinition('client');
         $clientNode

@@ -10,10 +10,9 @@ php:
 
 env:
     global:
-        - LIBRDKAFKA_VERSION=v0.11.3
+        - LIBRDKAFKA_VERSION=v1.0.1
 
 before_install:
-    - docker-compose --file tests/docker-compose.yml up -d
     - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
     - chmod +x .ci/install_rdkafka.sh
     - .ci/install_rdkafka.sh
