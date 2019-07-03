@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\Kafka;
 
-use RuntimeException;
-use function gethostname;
+use function Safe\gethostname;
 use function Safe\sprintf;
 
 class Client
@@ -29,12 +28,7 @@ class Client
     public function getIdWithHostname() : string
     {
         if ($this->id === null) {
-            $hostname = gethostname();
-            if ($hostname === false) {
-                throw new RuntimeException('Could not get hostname');
-            }
-
-            return $hostname;
+            return gethostname();
         }
 
         return sprintf('%s-%s', $this->id, gethostname());
