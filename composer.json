@@ -20,7 +20,7 @@
         "symfony/contracts": "^1.1",
         "symfony/dependency-injection": "^4.3",
         "symfony/framework-bundle": "^4.3",
-        "thecodingmachine/safe": "^0.1"
+        "thecodingmachine/safe": "^0.1.16"
     },
     "require-dev": {
         "doctrine/coding-standard": "^6.0",
