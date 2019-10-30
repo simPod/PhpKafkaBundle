@@ -1,0 +1,5 @@
+kafka:
+    authentication: 'sasl-plain://user:password'
+    bootstrap_servers: '127.0.0.1:9092,127.0.1.1:9092'
+    client:
+        id: 'kafka-bundle'

@@ -11,11 +11,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Yaml\Yaml;
 use function Safe\file_get_contents;
+use function Safe\sprintf as sprintf;
 use function sys_get_temp_dir;
 
 abstract class KafkaTestCase extends TestCase
 {
-    protected function createYamlBundleTestContainer() : Container
+    protected function createYamlBundleTestContainer(string $configName) : Container
     {
         $container = new ContainerBuilder(new ParameterBag([
             'kernel.name'        => 'app',
@@ -28,11 +29,9 @@ abstract class KafkaTestCase extends TestCase
         $extension = new KafkaExtension();
         $container->registerExtension($extension);
 
-        $fileContents = file_get_contents(__DIR__ . '/test-config.yaml');
+        $fileContents = file_get_contents(sprintf('%s/%s.yaml', __DIR__, $configName));
 
-        $config = Yaml::parse($fileContents);
-
-        $extension->load($config, $container);
+        $extension->load(Yaml::parse($fileContents), $container);
 
         $container->getCompilerPassConfig()->addPass(new TestCaseAllPublicCompilerPass());
         $container->compile();

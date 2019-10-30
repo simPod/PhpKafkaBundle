@@ -30,6 +30,10 @@ final class Configuration implements ConfigurationInterface
             ->scalarNode('bootstrap_servers')
             ->defaultValue(self::DEFAULT_BOOTSTRAP_SERVER_LIST);
 
+        $rootNode->children()
+            ->scalarNode('authentication')
+            ->defaultValue(null);
+
         $clientNode = new ArrayNodeDefinition('client');
         $clientNode
             ->children()
