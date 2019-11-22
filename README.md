@@ -42,31 +42,28 @@ You can create eg. `kafka.yaml` file in your config directory with following con
 
 ```yaml
 kafka:
+    authentication: '%env(KAFKA_AUTHENTICATION)%'
     bootstrap_servers: '%env(KAFKA_BOOTSTRAP_SERVERS)%'
     client:
         id: 'your-application-name'
 ```
 
+- `authentication` reads env var `KAFKA_AUTHENTICATIOn` that contains authentication uri (`sasl-plain://user:password`, or it might be just empty indicating no authentication).
 - `bootstrap_servers` reads env var `KAFKA_BOOTSTRAP_SERVERS` that contains comma-separated list of bootstrap servers (`broker-1.kafka:9092,broker-2.kafka:9092`).
 
-If not set, it defaults to `127.0.0.1:9092`
+If `bootstrap_servers` isn't set, it defaults to `127.0.0.1:9092`
 
 ### Services
 
 Following services are registered in container and can be DI injected.
 
-#### Brokers
-class: `\SimPod\KafkaBundle\Kafka\Brokers`
+#### Configuration
+class: `\SimPod\KafkaBundle\Kafka\Configuration`
 
-Brokers service gives you `bootstrap_servers` config value through `->getBootstrapServers()`
-
-#### Clients
-class: `\SimPod\KafkaBundle\Kafka\Clients`
-
-Clients can help you generate `client.id`
+Configuration service allows easy access to all the configuration properties.
 
 ```php
-$config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->client->getIdWithHostname());
+$config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->configuration->getIdWithHostname());
 ```
 
 ### Consuming
@@ -83,22 +80,17 @@ namespace Your\AppNamespace;
 
 use SimPod\Kafka\Clients\Consumer\ConsumerConfig;
 use SimPod\Kafka\Clients\Consumer\KafkaBatchConsumer;
-use SimPod\KafkaBundle\Kafka\Brokers;
-use SimPod\KafkaBundle\Kafka\Client;
+use SimPod\KafkaBundle\Kafka\Configuration;
 use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
 final class ExampleKafkaConsumer implements NamedConsumer
 {
-    /** @var Brokers */
-    private $brokers;
+    /** @var Configuration */
+    private $configuration;
 
-    /** @var Client */
-    private $client;
-
-    public function __construct(Client $client, Brokers $brokers)
+    public function __construct(Configuration $configuration)
     {
-        $this->brokers = $brokers;
-        $this->client  = $client;
+        $this->configuration = $configuration;
     }
 
     public function run() : void
@@ -120,9 +112,9 @@ final class ExampleKafkaConsumer implements NamedConsumer
     {
         $config = new ConsumerConfig();
 
-        $config->set(ConsumerConfig::BOOTSTRAP_SERVERS_CONFIG, $this->brokers->getList());
+        $config->set(ConsumerConfig::BOOTSTRAP_SERVERS_CONFIG, $this->configuration->getBootstrapServers());
         $config->set(ConsumerConfig::ENABLE_AUTO_COMMIT_CONFIG, false);
-        $config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->client->getIdWithHostname());
+        $config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->configuration->getClientIdWithHostname());
         $config->set(ConsumerConfig::AUTO_OFFSET_RESET_CONFIG, 'earliest');
         $config->set(ConsumerConfig::GROUP_ID_CONFIG, 'consumer_group');
 

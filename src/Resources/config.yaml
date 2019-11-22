@@ -4,13 +4,9 @@ services:
         autoconfigure: true
         public: false
 
-    SimPod\KafkaBundle\Kafka\Brokers:
+    SimPod\KafkaBundle\Kafka\Configuration:
         arguments:
             $config: '%kafka%'
 
     SimPod\KafkaBundle\Console\ConsumeCommand:
     SimPod\KafkaBundle\Console\ConsumerListCommand:
-
-    SimPod\KafkaBundle\Kafka\Client:
-        arguments:
-            $config: '%kafka%'
