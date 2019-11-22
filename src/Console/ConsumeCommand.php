@@ -43,7 +43,7 @@ final class ConsumeCommand extends Command
         );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : ?int
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $name = $input->getArgument(self::ARGUMENT_NAME);
         assert(is_string($name));

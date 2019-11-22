@@ -32,7 +32,7 @@ final class ConsumerListCommand extends Command
             ->setName(self::NAME);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : ?int
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         foreach ($this->consumerBag->getConsumers() as $consumerName => $consumer) {
             $output->writeln($consumerName);
