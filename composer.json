@@ -23,7 +23,7 @@
         "thecodingmachine/safe": "^0.1.16"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^6.0",
+        "doctrine/coding-standard": "^6.0 || ^7.0",
         "kwn/php-rdkafka-stubs": "^1.0",
         "phpstan/phpstan": "0.11.19",
         "phpstan/phpstan-phpunit": "0.11.2",
