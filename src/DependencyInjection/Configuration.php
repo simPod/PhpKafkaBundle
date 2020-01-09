@@ -7,6 +7,7 @@ namespace SimPod\KafkaBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use function assert;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -16,8 +17,8 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder(KafkaExtension::ALIAS);
 
-        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
+        assert($rootNode instanceof ArrayNodeDefinition);
 
         $this->configureConnection($rootNode);
 
