@@ -9,6 +9,7 @@ use SimPod\KafkaBundle\DependencyInjection\KafkaExtension;
 use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use function assert;
 
 final class SimPodKafkaBundle extends Bundle
 {
@@ -26,6 +27,8 @@ final class SimPodKafkaBundle extends Bundle
         if ($this->extension === null) {
             $this->extension = new KafkaExtension();
         }
+
+        assert($this->extension instanceof KafkaExtension);
 
         return $this->extension;
     }

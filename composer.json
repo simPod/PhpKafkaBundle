@@ -14,7 +14,7 @@
     },
     "require": {
         "php": "^7.2",
-        "simpod/kafka": "dev-master@dev",
+        "simpod/kafka": "^0.1.0",
         "symfony/config": "^4.3|^5.0",
         "symfony/console": "^4.3|^5.0",
         "symfony/contracts": "^1.1|^2.0",
@@ -24,13 +24,17 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^7.0",
-        "kwn/php-rdkafka-stubs": "^1.0",
+        "infection/infection": "^0.16.4",
+        "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/phpstan": "0.11.19",
         "phpstan/phpstan-phpunit": "0.11.2",
         "phpstan/phpstan-strict-rules": "0.11.1",
         "phpunit/phpunit": "^8.0",
+        "psalm/plugin-phpunit": "^0.10.1",
+        "simpod/php-coveralls-mirror": "^3.0",
         "symfony/yaml": "^5.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.0"
+        "thecodingmachine/phpstan-safe-rule": "^1.0",
+        "vimeo/psalm": "^3.12"
     },
     "suggest": {
         "kwn/php-rdkafka-stubs": "Support and autocompletion for RDKafka in IDE | require as dev dependency"

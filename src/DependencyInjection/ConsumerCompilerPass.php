@@ -25,7 +25,9 @@ final class ConsumerCompilerPass implements CompilerPassInterface
             )
         );
 
-        foreach ($containerBuilder->findTaggedServiceIds(self::TAG_NAME_CONSUMER) as $id => $tags) {
+        /** @var array<string, array<string, mixed>> $taggedServiceIds */
+        $taggedServiceIds = $containerBuilder->findTaggedServiceIds(self::TAG_NAME_CONSUMER);
+        foreach ($taggedServiceIds as $id => $tags) {
             $definition->addMethodCall('addConsumer', [new Reference($id)]);
         }
     }

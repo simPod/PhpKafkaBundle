@@ -9,12 +9,10 @@ use function Safe\sprintf;
 
 final class Configuration
 {
-    /** @var array|mixed[] */
+    /** @var array{authentication: string|null, bootstrap_servers: string, client?: array{id?: string}} */
     private $config;
 
-    /**
-     * @param mixed[] $config
-     */
+    /** @param array{authentication: string|null, bootstrap_servers: string, client?: array{id?: string}} $config */
     public function __construct(array $config)
     {
         $this->config = $config;
