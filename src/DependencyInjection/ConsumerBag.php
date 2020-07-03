@@ -8,10 +8,10 @@ use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
 final class ConsumerBag
 {
-    /** @var NamedConsumer[] */
+    /** @var array<string, NamedConsumer> */
     private $consumers = [];
 
-    /** @return NamedConsumer[] $consumers */
+    /** @return array<string, NamedConsumer> $consumers */
     public function getConsumers() : array
     {
         return $this->consumers;

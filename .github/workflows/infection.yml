@@ -1,0 +1,38 @@
+name: Run Infection
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+env:
+  LIBRDKAFKA_VERSION: v1.4.2
+
+jobs:
+  Infection:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install librdkafka
+        run: |
+          chmod +x .ci/install_rdkafka.sh
+          .ci/install_rdkafka.sh
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@2.2.0
+        with:
+          php-version: 7.3
+          coverage: pcov
+          tools: pecl
+          extensions: json, rdkafka
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run Infection
+        run: vendor/bin/infection --min-msi=30 --min-covered-msi=50 --log-verbosity=none -s
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
