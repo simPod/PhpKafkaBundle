@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^7.0",
-        "infection/infection": "^0.16.4",
+        "infection/infection": "^0.16.4 || ^0.18.0",
         "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/phpstan": "0.11.19",
         "phpstan/phpstan-phpunit": "0.11.2",
