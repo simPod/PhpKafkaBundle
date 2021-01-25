@@ -12,12 +12,12 @@ final class ConsumerBag
     private $consumers = [];
 
     /** @return array<string, NamedConsumer> $consumers */
-    public function getConsumers() : array
+    public function getConsumers(): array
     {
         return $this->consumers;
     }
 
-    public function addConsumer(NamedConsumer $consumer) : void
+    public function addConsumer(NamedConsumer $consumer): void
     {
         $this->consumers[$consumer->getName()] = $consumer;
     }

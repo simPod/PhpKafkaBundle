@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function assert;
 use function is_string;
 use function strtolower;
@@ -32,7 +33,7 @@ final class ConsumeCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this->setDescription(self::DESCRIPTION);
         $this->setName(self::NAME);
@@ -43,7 +44,7 @@ final class ConsumeCommand extends Command
         );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument(self::ARGUMENT_NAME);
         assert(is_string($name));

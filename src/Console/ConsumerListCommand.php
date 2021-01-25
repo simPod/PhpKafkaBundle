@@ -25,14 +25,14 @@ final class ConsumerListCommand extends Command
         parent::__construct();
     }
 
-    protected function configure() : void
+    protected function configure(): void
     {
         $this
             ->setDescription(self::DESCRIPTION)
             ->setName(self::NAME);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         foreach ($this->consumerBag->getConsumers() as $consumerName => $consumer) {
             $output->writeln($consumerName);
