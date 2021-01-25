@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Offset 'client' does not exist on array\\('authentication' \\=\\> string\\|null, 'bootstrap_servers' \\=\\> string, \\?'client' \\=\\> array\\(\\?'id' \\=\\> string\\)\\)\\.$#"
+			count: 2
+			path: src/Kafka/Configuration.php
+
