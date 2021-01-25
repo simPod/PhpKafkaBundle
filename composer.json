@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^8.2",
-        "infection/infection": "^0.16.4",
+        "infection/infection": "^0.20.2",
         "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12.69",
@@ -32,6 +32,7 @@
         "phpstan/phpstan-strict-rules": "^0.12.9",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.15.1",
+        "roave/infection-static-analysis-plugin": "^1.7",
         "symfony/yaml": "^5.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0",
         "vimeo/psalm": "^4.4"
