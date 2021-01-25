@@ -14,7 +14,7 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "simpod/kafka": "dev-master as 0.2.0",
+        "simpod/kafka": "^0.2.0",
         "symfony/config": "^5.0",
         "symfony/console": "^5.0",
         "symfony/contracts": "^2.0",
