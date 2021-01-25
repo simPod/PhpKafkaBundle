@@ -28,7 +28,7 @@ jobs:
       - name: Install PHP
         uses: "shivammathur/setup-php@v2"
         with:
-          php-version: 7.3
+          php-version: 7.4
           coverage: none
           tools: pecl
           extensions: json, rdkafka
@@ -67,7 +67,7 @@ jobs:
       - name: Install PHP
         uses: "shivammathur/setup-php@v2"
         with:
-          php-version: 7.3
+          php-version: 7.4
           coverage: pcov
           tools: pecl
           extensions: json, mbstring, rdkafka
@@ -100,7 +100,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        php: [7.3, 7.4]
+        php: [7.4, 8.0]
         env: [
           'DEPENDENCIES=--prefer-lowest',
           '',
