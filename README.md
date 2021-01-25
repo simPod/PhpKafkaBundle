@@ -79,7 +79,7 @@ declare(strict_types=1);
 namespace Your\AppNamespace;
 
 use SimPod\Kafka\Clients\Consumer\ConsumerConfig;
-use SimPod\Kafka\Clients\Consumer\KafkaBatchConsumer;
+use SimPod\Kafka\Clients\Consumer\KafkaConsumer;
 use SimPod\KafkaBundle\Kafka\Configuration;
 use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
@@ -95,7 +95,7 @@ final class ExampleKafkaConsumer implements NamedConsumer
 
     public function run() : void
     {
-        $kafkaConsumer = new KafkaBatchConsumer($this->getConfig());
+        $kafkaConsumer = new KafkaConsumer($this->getConfig());
 
         $kafkaConsumer->subscribe(['topic1']);
 
