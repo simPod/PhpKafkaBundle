@@ -1,12 +1,11 @@
 # PHP Kafka Symfony bundle for php-rdkafka
 
-[![Build Status](https://github.com/simPod/PhpKafkaBundle/workflows/CI/badge.svg?branch=master)](https://github.com/simPod/PhpKafkaBundle/actions)
-[![Coverage Status](https://coveralls.io/repos/github/simPod/PhpKafkaBundle/badge.svg?branch=master)](https://coveralls.io/github/simPod/PhpKafkaBundle?branch=master)
-[![Downloads](https://poser.pugx.org/simpod/kafka-bundle/d/total.svg)](https://packagist.org/packages/simpod/kafka-bundle)
-[![Packagist](https://poser.pugx.org/simpod/kafka-bundle/v/stable.svg)](https://packagist.org/packages/simpod/kafka-bundle)
-[![GitHub Issues](https://img.shields.io/github/issues/simPod/PhpKafkaBundle.svg?style=flat-square)](https://github.com/simPod/PhpKafkaBundle/issues)
-[![Type Coverage](https://shepherd.dev/github/simPod/PhpKafkaBundle/coverage.svg)](https://shepherd.dev/github/simPod/PhpKafkaBundle)
-[![Infection MSI](https://badge.stryker-mutator.io/github.com/simPod/PhpKafkaBundle/master)](https://infection.github.io)
+[![GitHub Actions][GA Image]][GA Link]
+[![Shepherd Type][Shepherd Image]][Shepherd Link]
+[![Code Coverage][Coverage Image]][CodeCov Link]
+[![Downloads][Downloads Image]][Packagist Link]
+[![Packagist][Packagist Image]][Packagist Link]
+[![Infection MSI][Infection Image]][Infection Link]
 
 ## Installation
 
@@ -128,3 +127,25 @@ final class ExampleKafkaConsumer implements NamedConsumer
 ### Development
 
 There is `kwn/php-rdkafka-stubs` listed as a dev dependency so it properly integrates php-rdkafka extension with IDE.
+
+[GA Image]: https://github.com/simPod/PhpKafkaBundle/workflows/CI/badge.svg
+
+[GA Link]: https://github.com/simPod/PhpKafkaBundle/actions?query=workflow%3A%22CI%22+branch%3Amaster
+
+[Shepherd Image]: https://shepherd.dev/github/simPod/PhpKafkaBundle/coverage.svg
+
+[Shepherd Link]: https://shepherd.dev/github/simPod/PhpKafkaBundle
+
+[Coverage Image]: https://codecov.io/gh/simPod/PhpKafkaBundle/branch/master/graph/badge.svg
+
+[CodeCov Link]: https://codecov.io/gh/simPod/PhpKafkaBundle/branch/master
+
+[Downloads Image]: https://poser.pugx.org/simpod/kafka-bundle/d/total.svg
+
+[Packagist Image]: https://poser.pugx.org/simpod/kafka-bundle/v/stable.svg
+
+[Packagist Link]: https://packagist.org/packages/simpod/kafka-bundle
+
+[Infection Image]: https://badge.stryker-mutator.io/github.com/simPod/PhpKafkaBundle/master
+
+[Infection Link]: https://infection.github.io
