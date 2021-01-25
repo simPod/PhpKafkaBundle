@@ -13,10 +13,10 @@ final class KafkaExtension extends Extension
 {
     public const ALIAS = 'kafka';
 
-    /** @param mixed[] $config */
-    public function load(array $config, ContainerBuilder $container): void
+    /** @param mixed[] $configs */
+    public function load(array $configs, ContainerBuilder $container): void
     {
-        $container->setParameter(self::ALIAS, $this->processConfiguration(new Configuration(), $config));
+        $container->setParameter(self::ALIAS, $this->processConfiguration(new Configuration(), $configs));
 
         $loader = new YamlFileLoader(
             $container,
