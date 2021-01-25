@@ -1,0 +1,40 @@
+name: Infection
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+env:
+  LIBRDKAFKA_VERSION: v1.4.2
+
+jobs:
+  Infection:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          fetch-depth: 2
+
+      - name: Install librdkafka
+        run: |
+          chmod +x .ci/install_rdkafka.sh
+          .ci/install_rdkafka.sh
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.4"
+          coverage: "pcov"
+          extensions: "rdkafka"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+
+      - name: Run Infection
+        run: vendor/bin/roave-infection-static-analysis-plugin --min-msi=26 --min-covered-msi=50 --log-verbosity=none -s
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
