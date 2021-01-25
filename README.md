@@ -58,6 +58,7 @@ If `bootstrap_servers` isn't set, it defaults to `127.0.0.1:9092`
 Following services are registered in container and can be DI injected.
 
 #### Configuration
+
 class: `\SimPod\KafkaBundle\Kafka\Configuration`
 
 Configuration service allows easy access to all the configuration properties.
@@ -71,6 +72,7 @@ $config->set(ConsumerConfig::CLIENT_ID_CONFIG, $this->configuration->getIdWithHo
 There's interface `NamedConsumer` available. When your consumer implements it, this bundle autoregisters it.
 
 This is example of simple consumer, it can be then run via `bin/console kafka:consumer:run consumer1`
+
 ```php
 <?php
 
@@ -85,15 +87,14 @@ use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
 final class ExampleKafkaConsumer implements NamedConsumer
 {
-    /** @var Configuration */
-    private $configuration;
+    private Configuration $configuration;
 
     public function __construct(Configuration $configuration)
     {
         $this->configuration = $configuration;
     }
 
-    public function run() : void
+    public function run(): void
     {
         $kafkaConsumer = new KafkaConsumer($this->getConfig());
 
@@ -104,11 +105,11 @@ final class ExampleKafkaConsumer implements NamedConsumer
         }
     }
     
-    public function getName() : string {
+    public function getName(): string {
         return 'consumer1';    
     }
 
-    private function getConfig() : ConsumerConfig
+    private function getConfig(): ConsumerConfig
     {
         $config = new ConsumerConfig();
 

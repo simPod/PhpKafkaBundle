@@ -10,7 +10,7 @@ use function Safe\sprintf;
 final class Configuration
 {
     /** @var array{authentication: string|null, bootstrap_servers: string, client?: array{id?: string}} */
-    private $config;
+    private array $config;
 
     /** @param array{authentication: string|null, bootstrap_servers: string, client?: array{id?: string}} $config */
     public function __construct(array $config)
