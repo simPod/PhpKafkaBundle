@@ -6,5 +6,5 @@ namespace SimPod\KafkaBundle\Kafka\Clients\Consumer;
 
 interface NamedConsumer extends Consumer
 {
-    public function getName() : string;
+    public function getName(): string;
 }

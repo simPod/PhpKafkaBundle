@@ -9,11 +9,12 @@ use SimPod\KafkaBundle\DependencyInjection\KafkaExtension;
 use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 use function assert;
 
 final class SimPodKafkaBundle extends Bundle
 {
-    public function build(ContainerBuilder $container) : void
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
@@ -22,7 +23,7 @@ final class SimPodKafkaBundle extends Bundle
         $container->addCompilerPass(new ConsumerCompilerPass());
     }
 
-    public function getContainerExtension() : KafkaExtension
+    public function getContainerExtension(): KafkaExtension
     {
         if ($this->extension === null) {
             $this->extension = new KafkaExtension();

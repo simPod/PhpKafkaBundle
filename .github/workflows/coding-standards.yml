@@ -1,0 +1,38 @@
+name: "Coding Standards"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+env:
+  LIBRDKAFKA_VERSION: v1.4.2
+
+jobs:
+  coding-standards:
+    name: "Coding Standards"
+    runs-on: "ubuntu-20.04"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: Install librdkafka
+        run: |
+          chmod +x .ci/install_rdkafka.sh
+          .ci/install_rdkafka.sh
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.4"
+          coverage: "none"
+          extensions: "rdkafka"
+          tools: "cs2pr, pecl"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+
+      - name: "Run PHP_CodeSniffer"
+        run: "vendor/bin/phpcs -q --no-colors --report=checkstyle | cs2pr"

@@ -18,22 +18,22 @@ final class Configuration
         $this->config = $config;
     }
 
-    public function getAuthentication() : ?string
+    public function getAuthentication(): ?string
     {
         return $this->config['authentication'];
     }
 
-    public function getBootstrapServers() : string
+    public function getBootstrapServers(): string
     {
         return $this->config['bootstrap_servers'];
     }
 
-    public function getClientId() : ?string
+    public function getClientId(): ?string
     {
         return $this->config['client']['id'] ?? null;
     }
 
-    public function getClientIdWithHostname() : string
+    public function getClientIdWithHostname(): string
     {
         $clientId = $this->config['client']['id'] ?? null;
         if ($clientId === null) {

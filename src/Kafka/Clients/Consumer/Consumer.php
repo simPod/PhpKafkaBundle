@@ -6,5 +6,5 @@ namespace SimPod\KafkaBundle\Kafka\Clients\Consumer;
 
 interface Consumer
 {
-    public function run() : void;
+    public function run(): void;
 }
