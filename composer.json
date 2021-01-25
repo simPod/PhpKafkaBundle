@@ -13,7 +13,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.4 || ^8.0",
         "simpod/kafka": "dev-master as 0.2.0",
         "symfony/config": "^4.3|^5.0",
         "symfony/console": "^4.3|^5.0",
