@@ -22,7 +22,7 @@ jobs:
           .ci/install_rdkafka.sh
 
       - name: Install PHP
-        uses: shivammathur/setup-php@2.2.0
+        uses: "shivammathur/setup-php@v2"
         with:
           php-version: 7.3
           coverage: none
