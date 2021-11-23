@@ -1,5 +1,0 @@
-services:
-	-
-		class: SimPod\KafkaBundle\Tests\Utils\PHPStan\Extension\ContainerGet
-		tags:
-			- phpstan.broker.dynamicMethodReturnTypeExtension
