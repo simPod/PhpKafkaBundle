@@ -7,7 +7,7 @@ on:
       - "master"
 
 env:
-  LIBRDKAFKA_VERSION: v1.4.2
+  LIBRDKAFKA_VERSION: v1.8.0
 
 jobs:
   coding-standards:
