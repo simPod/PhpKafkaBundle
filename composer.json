@@ -15,11 +15,11 @@
     "require": {
         "php": "^8.0",
         "simpod/kafka": "^0.2.0",
-        "symfony/config": "^5.0",
-        "symfony/console": "^5.0",
+        "symfony/config": "^6.0",
+        "symfony/console": "^6.0",
         "symfony/contracts": "^2.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/framework-bundle": "^5.0",
+        "symfony/dependency-injection": "^6.0",
+        "symfony/framework-bundle": "^6.0",
         "thecodingmachine/safe": "^1.0.2"
     },
     "require-dev": {
@@ -33,7 +33,7 @@
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
         "roave/infection-static-analysis-plugin": "^1.7",
-        "symfony/yaml": "^5.0",
+        "symfony/yaml": "^6.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0",
         "vimeo/psalm": "^4.4"
     },
