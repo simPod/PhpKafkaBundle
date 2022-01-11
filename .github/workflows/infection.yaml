@@ -35,6 +35,6 @@ jobs:
         uses: "ramsey/composer-install@v1"
 
       - name: Run Infection
-        run: vendor/bin/roave-infection-static-analysis-plugin --min-msi=26 --min-covered-msi=50 --log-verbosity=none -s
+        run: vendor/bin/roave-infection-static-analysis-plugin --threads=$(nproc)
         env:
-          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
