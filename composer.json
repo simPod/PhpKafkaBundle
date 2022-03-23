@@ -27,7 +27,7 @@
         "infection/infection": "^0.26.0",
         "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^0.12.69",
+        "phpstan/phpstan": "^1.0.0",
         "phpstan/phpstan-phpunit": "^0.12.17",
         "phpstan/phpstan-strict-rules": "^0.12.9",
         "phpunit/phpunit": "^9.5",
