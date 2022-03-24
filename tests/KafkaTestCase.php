@@ -31,7 +31,10 @@ abstract class KafkaTestCase extends TestCase
 
         $fileContents = file_get_contents(sprintf('%s/%s.yaml', __DIR__, $configName));
 
-        $extension->load(Yaml::parse($fileContents), $container);
+        $configs = Yaml::parse($fileContents);
+        assert(is_array($configs));
+
+        $extension->load($configs, $container);
 
         $container->getCompilerPassConfig()->addPass(new TestCaseAllPublicCompilerPass());
         $container->compile();
