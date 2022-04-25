@@ -56,6 +56,6 @@ jobs:
         env:
           CHECK_PLATFORM_REQUIREMENTS: "false"
       - name: Upload Security Analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
