@@ -42,20 +42,29 @@ jobs:
     runs-on: "ubuntu-20.04"
 
     steps:
-      - name: Checkout code
+      - name: "Checkout code"
         uses: actions/checkout@v3
 
-      - name: Psalm
-        uses: docker://vimeo/psalm-github-actions:4.23.0
+      - name: Install librdkafka
+        run: |
+          chmod +x .ci/install_rdkafka.sh
+          .ci/install_rdkafka.sh
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
         with:
-          args: --shepherd
-          composer_ignore_platform_reqs: true
-          composer_require_dev: true
-          security_analysis: true
-          report_file: results.sarif
-        env:
-          CHECK_PLATFORM_REQUIREMENTS: "false"
-      - name: Upload Security Analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v2
+          php-version: "8.0"
+          coverage: "none"
+          extensions: "rdkafka"
+          tools: "cs2pr"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+
+      - name: "Run a static analysis with vimeo/psalm"
+        run: "vendor/bin/psalm --output-format=github --shepherd --taint-analysis --report=results.sarif"
+
+      - name: "Upload Security Analysis results to GitHub"
+        uses: "github/codeql-action/upload-sarif@v1"
         with:
           sarif_file: results.sarif
