@@ -15,12 +15,8 @@ final class ConsumerListCommand extends Command
     private const DESCRIPTION = 'List available consumers.';
     private const NAME        = 'debug:' . KafkaExtension::ALIAS . ':consumers';
 
-    private ConsumerBag $consumerBag;
-
-    public function __construct(ConsumerBag $consumerBag)
+    public function __construct(private ConsumerBag $consumerBag)
     {
-        $this->consumerBag = $consumerBag;
-
         parent::__construct();
     }
 
