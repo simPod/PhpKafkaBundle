@@ -23,12 +23,8 @@ final class ConsumeCommand extends Command
     private const DESCRIPTION          = 'Start consuming';
     private const NAME                 = KafkaExtension::ALIAS . ':consumer:run';
 
-    private ConsumerBag $consumerBag;
-
-    public function __construct(ConsumerBag $consumerBag)
+    public function __construct(private ConsumerBag $consumerBag)
     {
-        $this->consumerBag = $consumerBag;
-
         parent::__construct();
     }
 
@@ -39,7 +35,7 @@ final class ConsumeCommand extends Command
         $this->addArgument(
             self::ARGUMENT_NAME,
             InputArgument::REQUIRED,
-            self::ARGUMENT_DESCRIPTION
+            self::ARGUMENT_DESCRIPTION,
         );
     }
 

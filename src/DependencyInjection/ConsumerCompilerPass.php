@@ -21,8 +21,8 @@ final class ConsumerCompilerPass implements CompilerPassInterface
             ConsumerBag::class,
             new Definition(
                 ConsumerBag::class,
-                [$consumerServices]
-            )
+                [$consumerServices],
+            ),
         );
 
         /** @var array<string, array<string, mixed>> $taggedServiceIds */
