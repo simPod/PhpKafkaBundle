@@ -5,8 +5,7 @@ on:
   push:
     branches:
       - "master"
-  schedule:
-    - cron: "42 3 * * *"
+  workflow_dispatch:
 
 env:
   LIBRDKAFKA_VERSION: v1.8.0
