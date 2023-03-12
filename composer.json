@@ -40,7 +40,7 @@
         "roave/infection-static-analysis-plugin": "^1.7",
         "symfony/yaml": "^6.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0",
-        "vimeo/psalm": "^4.4"
+        "vimeo/psalm": "^5.0"
     },
     "suggest": {
         "kwn/php-rdkafka-stubs": "Support and autocompletion for RDKafka in IDE | require as dev dependency"
