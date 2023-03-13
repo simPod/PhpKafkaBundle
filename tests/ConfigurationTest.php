@@ -7,11 +7,10 @@ namespace SimPod\KafkaBundle\Tests;
 use Generator;
 use SimPod\KafkaBundle\Kafka\Configuration;
 
+/** @covers \SimPod\KafkaBundle\Kafka\Configuration */
 final class ConfigurationTest extends KafkaTestCase
 {
-    /**
-     * @dataProvider providerConfiguration
-     */
+    /** @dataProvider providerConfiguration */
     public function testConfiguration(
         string $config,
         ?string $authentication,
@@ -28,7 +27,7 @@ final class ConfigurationTest extends KafkaTestCase
     }
 
     /** @return Generator<array{string, string|null, string, string|null}> */
-    public function providerConfiguration() : Generator
+    public static function providerConfiguration() : Generator
     {
         yield ['test-no-auth-no-client', null, '127.0.0.1:9092', null];
         yield ['test-sasl-auth-some-id', 'sasl-plain://user:password', '127.0.0.1:9092,127.0.1.1:9092', 'kafka-bundle'];

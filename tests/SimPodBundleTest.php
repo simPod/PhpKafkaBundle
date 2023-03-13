@@ -8,7 +8,9 @@ use PHPUnit\Framework\TestCase;
 use SimPod\KafkaBundle\DependencyInjection\ConsumerCompilerPass;
 use SimPod\KafkaBundle\SimPodKafkaBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
+/** @covers \SimPod\KafkaBundle\SimPodKafkaBundle */
 final class SimPodBundleTest extends TestCase
 {
     /** @var SimPodKafkaBundle */
@@ -30,8 +32,18 @@ final class SimPodBundleTest extends TestCase
         }
         self::assertTrue(
             $containsConsumerCompilerPass,
-            'RabbitMQ bundle does not have registered consumer compiler pass.'
+            'Kafka bundle does not have registered consumer compiler pass.'
         );
+
+        $autoconfiguredInstanceof = $containerBuilder->getAutoconfiguredInstanceof();
+        self::assertArrayHasKey(
+            NamedConsumer::class,
+            $autoconfiguredInstanceof,
+            'Kafka bundle does not have registered autoconfigured instance of.'
+        );
+
+        self::assertArrayHasKey(
+            ConsumerCompilerPass::TAG_NAME_CONSUMER,$autoconfiguredInstanceof[NamedConsumer::class]->getTags());
     }
 
     protected function setUp() : void

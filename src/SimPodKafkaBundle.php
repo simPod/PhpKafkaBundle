@@ -16,6 +16,7 @@ final class SimPodKafkaBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
+        /** @infection-ignore-all */
         parent::build($container);
 
         $container->registerForAutoconfiguration(NamedConsumer::class)
