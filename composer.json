@@ -28,7 +28,7 @@
         "thecodingmachine/safe": "^2"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^10.0",
+        "doctrine/coding-standard": "^11.0",
         "infection/infection": "^0.26.0",
         "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/extension-installer": "^1.1",
