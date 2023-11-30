@@ -147,6 +147,6 @@ There is `kwn/php-rdkafka-stubs` listed as a dev dependency so it properly integ
 
 [Packagist Link]: https://packagist.org/packages/simpod/kafka-bundle
 
-[Infection Image]: https://badge.stryker-mutator.io/github.com/simPod/PhpKafkaBundle/master
+[Infection Image]: https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FsimPod%2FPhpKafkaBundle%2Fmaster
 
 [Infection Link]: https://dashboard.stryker-mutator.io/reports/github.com/simPod/PhpKafkaBundle/master
