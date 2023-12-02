@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SimPod\KafkaBundle\Tests;
+namespace SimPod\KafkaBundle\Tests\Kafka;
 
 use Generator;
 use SimPod\KafkaBundle\Kafka\Configuration;
+use SimPod\KafkaBundle\Tests\KafkaTestCase;
 
 /** @covers \SimPod\KafkaBundle\Kafka\Configuration */
 final class ConfigurationTest extends KafkaTestCase
