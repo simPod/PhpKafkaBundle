@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimPod\KafkaBundle\Kafka;
 
 use function Safe\gethostname;
-use function Safe\sprintf;
+use function sprintf;
 
 final class Configuration
 {
