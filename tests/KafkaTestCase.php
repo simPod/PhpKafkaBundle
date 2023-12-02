@@ -11,7 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Yaml\Yaml;
 use function Safe\file_get_contents;
-use function Safe\sprintf as sprintf;
 use function sys_get_temp_dir;
 
 abstract class KafkaTestCase extends TestCase
