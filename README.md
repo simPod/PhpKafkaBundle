@@ -1,7 +1,6 @@
 # PHP Kafka Symfony bundle for php-rdkafka
 
 [![GitHub Actions][GA Image]][GA Link]
-[![Shepherd Type][Shepherd Image]][Shepherd Link]
 [![Code Coverage][Coverage Image]][CodeCov Link]
 [![Downloads][Downloads Image]][Packagist Link]
 [![Packagist][Packagist Image]][Packagist Link]
@@ -132,10 +131,6 @@ There is `kwn/php-rdkafka-stubs` listed as a dev dependency so it properly integ
 [GA Image]: https://github.com/simPod/PhpKafkaBundle/workflows/CI/badge.svg
 
 [GA Link]: https://github.com/simPod/PhpKafkaBundle/actions?query=workflow%3A%22CI%22+branch%3Amaster
-
-[Shepherd Image]: https://shepherd.dev/github/simPod/PhpKafkaBundle/coverage.svg
-
-[Shepherd Link]: https://shepherd.dev/github/simPod/PhpKafkaBundle
 
 [Coverage Image]: https://codecov.io/gh/simPod/PhpKafkaBundle/branch/master/graph/badge.svg
 
