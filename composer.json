@@ -32,9 +32,9 @@
         "infection/infection": "^0.29.0",
         "kwn/php-rdkafka-stubs": "^2.0",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.0.0",
-        "phpstan/phpstan-phpunit": "^1.0.0",
-        "phpstan/phpstan-strict-rules": "^1.0.0",
+        "phpstan/phpstan": "^2.0.0",
+        "phpstan/phpstan-phpunit": "^2.0.0",
+        "phpstan/phpstan-strict-rules": "^2.0.0",
         "phpunit/phpunit": "^11.0",
         "symfony/yaml": "^7.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0"
