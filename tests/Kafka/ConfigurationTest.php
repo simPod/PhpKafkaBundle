@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimPod\KafkaBundle\Tests\Kafka;
 
 use Generator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SimPod\KafkaBundle\Kafka\Configuration;
 use SimPod\KafkaBundle\Tests\KafkaTestCase;
 
-/** @covers \SimPod\KafkaBundle\Kafka\Configuration */
+#[CoversClass(Configuration::class)]
 final class ConfigurationTest extends KafkaTestCase
 {
     #[DataProvider('providerConfiguration')]
