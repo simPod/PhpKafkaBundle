@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class ConsumerCompilerPass implements CompilerPassInterface
 {
-    public const TAG_NAME_CONSUMER = KafkaExtension::ALIAS . '.consumer';
+    public const string TAG_NAME_CONSUMER = KafkaExtension::ALIAS . '.consumer';
 
     public function process(ContainerBuilder $containerBuilder): void
     {
