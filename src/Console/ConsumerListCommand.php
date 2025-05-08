@@ -12,8 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ConsumerListCommand extends Command
 {
-    private const DESCRIPTION = 'List available consumers.';
-    private const NAME        = 'debug:' . KafkaExtension::ALIAS . ':consumers';
+    private const string DESCRIPTION = 'List available consumers.';
+    private const string NAME        = 'debug:' . KafkaExtension::ALIAS . ':consumers';
 
     public function __construct(private ConsumerBag $consumerBag)
     {

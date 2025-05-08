@@ -18,10 +18,10 @@ use function strtolower;
 
 final class ConsumeCommand extends Command
 {
-    private const ARGUMENT_DESCRIPTION = 'Consumer name';
-    private const ARGUMENT_NAME        = 'consumerName';
-    private const DESCRIPTION          = 'Start consuming';
-    private const NAME                 = KafkaExtension::ALIAS . ':consumer:run';
+    private const string ARGUMENT_DESCRIPTION = 'Consumer name';
+    private const string ARGUMENT_NAME        = 'consumerName';
+    private const string DESCRIPTION          = 'Start consuming';
+    private const NAME                        = KafkaExtension::ALIAS . ':consumer:run';
 
     public function __construct(private ConsumerBag $consumerBag)
     {

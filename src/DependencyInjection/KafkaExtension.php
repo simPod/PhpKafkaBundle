@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class KafkaExtension extends Extension
 {
-    public const ALIAS = 'kafka';
+    public const string ALIAS = 'kafka';
 
     /** @param mixed[] $configs */
     public function load(array $configs, ContainerBuilder $container): void

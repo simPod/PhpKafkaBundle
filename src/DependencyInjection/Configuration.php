@@ -12,7 +12,7 @@ use function assert;
 
 final class Configuration implements ConfigurationInterface
 {
-    private const DEFAULT_BOOTSTRAP_SERVER_LIST = '127.0.0.1:9092';
+    private const string DEFAULT_BOOTSTRAP_SERVER_LIST = '127.0.0.1:9092';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
