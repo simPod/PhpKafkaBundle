@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimPod\KafkaBundle\DependencyInjection\ConsumerCompilerPass;
 use SimPod\KafkaBundle\SimPodKafkaBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SimPod\KafkaBundle\Kafka\Clients\Consumer\NamedConsumer;
 
-/** @covers \SimPod\KafkaBundle\SimPodKafkaBundle */
+#[CoversClass(SimPodKafkaBundle::class)]
 final class SimPodBundleTest extends TestCase
 {
     /** @var SimPodKafkaBundle */
