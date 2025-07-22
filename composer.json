@@ -19,7 +19,7 @@
     },
     "require": {
         "php": "^8.3",
-        "simpod/kafka": "^0.2.0",
+        "simpod/kafka": "^0.3.0",
         "symfony/config": "^7.0",
         "symfony/console": "^7.0",
         "symfony/contracts": "^3.0",
