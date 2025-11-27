@@ -20,11 +20,11 @@
     "require": {
         "php": "^8.4",
         "simpod/kafka": "^0.3.0",
-        "symfony/config": "^7.0",
-        "symfony/console": "^7.0",
+        "symfony/config": "^8.0",
+        "symfony/console": "^8.0",
         "symfony/contracts": "^3.0",
-        "symfony/dependency-injection": "^7.0",
-        "symfony/framework-bundle": "^7.0",
+        "symfony/dependency-injection": "^8.0",
+        "symfony/framework-bundle": "^8.0",
         "thecodingmachine/safe": "^2 || ^3"
     },
     "require-dev": {
@@ -35,7 +35,7 @@
         "phpstan/phpstan-phpunit": "^2.0.0",
         "phpstan/phpstan-strict-rules": "^2.0.0",
         "phpunit/phpunit": "^12.0",
-        "symfony/yaml": "^7.0",
+        "symfony/yaml": "^8.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0"
     },
     "autoload": {
