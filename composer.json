@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^14.0",
-        "infection/infection": "^0.31.0",
+        "infection/infection": "^0.32.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^2.0.0",
         "phpstan/phpstan-phpunit": "^2.0.0",
