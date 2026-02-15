@@ -8,8 +8,6 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-use function assert;
-
 final class Configuration implements ConfigurationInterface
 {
     private const string DEFAULT_BOOTSTRAP_SERVER_LIST = '127.0.0.1:9092';
@@ -18,10 +16,7 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder(KafkaExtension::ALIAS);
 
-        $rootNode = $treeBuilder->getRootNode();
-        assert($rootNode instanceof ArrayNodeDefinition);
-
-        $this->configureConnection($rootNode);
+        $this->configureConnection($treeBuilder->getRootNode());
 
         return $treeBuilder;
     }
