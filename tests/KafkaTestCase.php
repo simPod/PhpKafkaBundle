@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Yaml\Yaml;
-use function Safe\file_get_contents;
+use function file_get_contents;
 use function sys_get_temp_dir;
 
 abstract class KafkaTestCase extends TestCase
@@ -29,6 +29,7 @@ abstract class KafkaTestCase extends TestCase
         $container->registerExtension($extension);
 
         $fileContents = file_get_contents(sprintf('%s/%s.yaml', __DIR__, $configName));
+        self::assertIsString($fileContents);
 
         $configs = Yaml::parse($fileContents);
         assert(is_array($configs));

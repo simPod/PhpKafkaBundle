@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimPod\KafkaBundle\Kafka;
 
-use function Safe\gethostname;
+use function gethostname;
 use function sprintf;
 
 final class Configuration
@@ -31,11 +31,16 @@ final class Configuration
 
     public function getClientIdWithHostname(): string
     {
-        $clientId = $this->config['client']['id'] ?? null;
-        if ($clientId === null) {
-            return gethostname();
+        $hostname = gethostname();
+        if ($hostname === false) {
+            $hostname = 'unknown';
         }
 
-        return sprintf('%s-%s', $clientId, gethostname());
+        $clientId = $this->config['client']['id'] ?? null;
+        if ($clientId === null) {
+            return $hostname;
+        }
+
+        return sprintf('%s-%s', $clientId, $hostname);
     }
 }
