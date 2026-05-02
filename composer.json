@@ -15,6 +15,7 @@
             "phpstan/extension-installer": true,
             "infection/extension-installer": true
         },
+        "lock": false,
         "sort-packages": true
     },
     "require": {
